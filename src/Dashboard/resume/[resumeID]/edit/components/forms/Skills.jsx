@@ -8,7 +8,7 @@ import { LoaderCircle } from 'lucide-react'
 import { useContext } from 'react'
 import { ResumeInfoContext } from '@/context/ResumeInfoContext'
 import { toast } from 'sonner'
-import GlobalApi from './../../../../../../../services/globalApi'
+import GlobalApi from './../../../../../../../services/GlobalApi'
 import { useParams } from 'react-router-dom'
 
 function Skills() {
