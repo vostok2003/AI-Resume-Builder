@@ -111,8 +111,9 @@
 /* hide print-area on screen */
 #print-area {
     display: block;
-  /* optional spacing so it sits under the buttons nicely */
-   margin: 5rem 15rem;
+    max-width: 850px;
+    margin: 2rem auto;
+    padding: 0 1rem;
 }
 
 /* force print-area visible and hide everything else when printing */
@@ -129,22 +130,32 @@
     position: static !important;
     top: auto !important;
     left: auto !important;
-    width: auto !important;
+    width: 100% !important;
+    max-width: 100% !important;
     height: auto !important;
     margin: 0 !important;
     padding: 0 !important;
+    background: white !important;
   }
 
   /* remove page margin if you want full-bleed */
   @page {
-    size: auto;
-    margin: 0mm;
+    size: A4;
+    margin: 10mm;
   }
 
   body {
     margin: 0 !important;
     padding: 0 !important;
     box-shadow: none !important;
+    background: white !important;
+  }
+
+  /* Remove glassmorphism effects in print */
+  .glass, .glass-dark {
+    background: white !important;
+    backdrop-filter: none !important;
+    border: none !important;
   }
 }
 
