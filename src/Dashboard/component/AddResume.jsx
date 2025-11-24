@@ -48,37 +48,45 @@ function AddResume() {
   }
   return (
     <div>
-        <div className="p-14 py-24 border items-center flex justify-center bg-secondary rounded-lg h-[280px]
-                        hover:scale-105 trasition-all hover:shadow-md cursor-pointer border-dashed"
+        <div className="glass rounded-2xl p-14 py-24 items-center flex justify-center h-[280px]
+                        hover:scale-105 transition-all hover:shadow-2xl cursor-pointer border-2 border-dashed border-white/30
+                        glow-hover group"
                         onClick={()=>setOpenDialog(true)}>
-            <PlusSquare/>
+            <div className="text-center">
+              <div className="w-16 h-16 gradient-primary rounded-2xl flex items-center justify-center mx-auto mb-3 group-hover:scale-110 transition-transform">
+                <PlusSquare className="w-8 h-8 text-white"/>
+              </div>
+              <p className="text-white font-semibold">Create New Resume</p>
+            </div>
         </div>
         <Dialog open={openDialog}>
             
-            <DialogContent>
+            <DialogContent className="glass-dark border-white/20">
                 <DialogHeader>
-                    <DialogTitle>Create New Resume</DialogTitle>
-                    <DialogDescription>
+                    <DialogTitle className="text-2xl font-bold bg-gradient-to-r from-purple-400 to-pink-400 bg-clip-text text-transparent">
+                      Create New Resume
+                    </DialogTitle>
+                    <DialogDescription className="text-gray-300">
                         Add a title for your new resume
                         <Input 
-                        className="my-2" 
-                        placeholder="Ex.Full Stack resume"
+                        className="my-4 glass border-white/30 text-white placeholder:text-gray-400 focus:border-purple-400" 
+                        placeholder="Ex. Full Stack Developer Resume"
                         onChange={(e)=>setResumeTitle(e.target.value)}
                         />
                     </DialogDescription>
-                    <div className="flex justify-end gap-5 mt-4">
+                    <div className="flex justify-end gap-3 mt-4">
                         
-                        <Button variant="ghost" onClick={()=>setOpenDialog(false)}>
+                        <Button variant="ghost" onClick={()=>setOpenDialog(false)} className="text-white hover:bg-white/10">
                          Cancel</Button>
                         <Button 
-                        variant="secondary"
+                        className="gradient-primary text-white"
                         disabled={!resumeTitle || loading}
                         onClick={()=>onCreate()}
                         >
                         {
                           loading?
                           <Loader2 className='animate-spin'/> :
-                          'Create' }    </Button>
+                          'Create Resume' }    </Button>
                     </div>
                 </DialogHeader>
             </DialogContent>
