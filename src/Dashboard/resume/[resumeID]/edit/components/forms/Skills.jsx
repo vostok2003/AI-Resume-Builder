@@ -62,36 +62,55 @@ function Skills() {
         })
     },[skillList])
   return (
-    <div className="p-5 shadow-lg rounded-lg border-t-primary border-t-4 mt-10">
-      <h2 className='font-bold text-lg'>Skills</h2>
-      <p>Add your top professional key skills</p>
+    <div className="glass rounded-2xl p-6 md:p-8 shadow-2xl border-t-4 border-purple-400">
+      <div className="flex items-center gap-3 mb-2">
+        <div className="w-10 h-10 gradient-warm rounded-xl flex items-center justify-center">
+          <span className="text-white font-bold text-lg">5</span>
+        </div>
+        <h2 className='font-bold text-2xl text-white'>Skills</h2>
+      </div>
+      <p className="text-white/80 mb-6">Add your top professional key skills</p>
 
-      <div>
+      <div className="space-y-4">
         {
             skillList.map((item,index)=>(
-                <div className='flex justify-between border rounded-lg p-3 my-5 gap-2'>
-                    <div>
-                        <label>Name</label>
-                        <Input className="w-full" name='name' onChange={(e)=>handleChange(index,'name',e.target.value)} 
-                            defaultValue={item?.name}
+                <div key={index} className='glass-dark rounded-xl p-4 flex flex-col sm:flex-row justify-between gap-4 hover:bg-white/10 transition-colors'>
+                    <div className="flex-1">
+                        <label className="text-sm font-semibold text-white mb-2 block">Skill Name</label>
+                        <Input 
+                          className="glass border-white/30 text-white placeholder:text-gray-400 focus:border-purple-400" 
+                          name='name' 
+                          onChange={(e)=>handleChange(index,'name',e.target.value)} 
+                          defaultValue={item?.name}
+                          placeholder="e.g. JavaScript, React, Node.js"
                         />
                     </div>
-                    <Rating style={{ maxWidth: 125 }} value={item.rating} onChange={(v)=>handleChange(index,'rating',v)} 
-                            defaultValue={item?.rating}
-                    />
+                    <div className="flex flex-col items-start sm:items-end justify-center">
+                        <label className="text-sm font-semibold text-white mb-2 block">Proficiency</label>
+                        <Rating 
+                          style={{ maxWidth: 125 }} 
+                          value={item.rating} 
+                          onChange={(v)=>handleChange(index,'rating',v)} 
+                          defaultValue={item?.rating}
+                        />
+                    </div>
                 </div>
 
             ))
         }
       </div>
-      <div className='flex justify-between'>
+      <div className='flex flex-col sm:flex-row justify-between gap-3 mt-6'>
         <div className='flex gap-2'>
-            <Button variant='outline' onClick={AddNewSkills}> + Add More Skills</Button>
-            <Button variant='outline' onClick={RemoveSkills}> - Remove</Button>
+            <Button className="glass border-white/30 text-white hover:bg-white/20" onClick={AddNewSkills}> 
+              + Add Skill
+            </Button>
+            <Button className="glass border-white/30 text-white hover:bg-white/20" onClick={RemoveSkills}> 
+              - Remove
+            </Button>
         </div>
         
-        <Button variant='outline' disabled={loading} onClick={()=>onSave()}>
-            {loading ?<LoaderCircle className='animate-spin'/>:'Save'}
+        <Button disabled={loading} onClick={()=>onSave()} className="gradient-primary text-white px-6">
+            {loading ?<LoaderCircle className='animate-spin'/>:'Save & Continue'}
         </Button>
       </div>
     </div>

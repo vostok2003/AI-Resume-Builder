@@ -9,7 +9,8 @@ import SkillsPreview from './preview/SkillsPreview';
 function ResumePreview() {
     const {resumeInfo,setResumeInfo}=useContext(ResumeInfoContext);
   return (
-    <div className='shadow-lg h-full p-14 border-t-[20px] '
+    <div className="sticky top-6 h-fit">
+      <div className='glass rounded-2xl shadow-2xl p-8 md:p-14 border-t-[20px] overflow-auto max-h-[calc(100vh-100px)]'
         style={{
             borderColor:resumeInfo?.themeColor
         }}
@@ -24,6 +25,7 @@ function ResumePreview() {
         <EducationPreview resumeInfo={resumeInfo}/>
       {/* skills */}
         <SkillsPreview resumeInfo={resumeInfo}/>
+      </div>
     </div>
   )
 }

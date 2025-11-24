@@ -44,16 +44,23 @@ function ThemeColor() {
   return (
     <Popover>
         <PopoverTrigger asChild>
-            <Button variant="ghost" size="sm" className="flex gap-2"> <LayoutGrid/> Theme</Button>
+            <Button className="glass border-white/30 text-white hover:bg-white/20 flex gap-2" size="sm">
+              <LayoutGrid className="w-4 h-4"/> 
+              <span className="hidden sm:inline">Theme</span>
+            </Button>
         </PopoverTrigger>
-        <PopoverContent>
-            <h2 className='mb-2 text-sm font-bold'> Select Theme Color</h2>
+        <PopoverContent className="glass-dark border-white/20 backdrop-blur-xl">
+            <h2 className='mb-3 text-sm font-bold text-white flex items-center gap-2'>
+              <LayoutGrid className="w-4 h-4"/>
+              Select Theme Color
+            </h2>
             <div className="grid grid-cols-5 gap-3">
                 { colors.map((item,index)=>(
                 <div
+                key={index}
                 onClick={()=>onColorSelect(item)}
-                className={`h-5 w-5 rounded-full cursor-pointer hover:border-black border 
-                ${selectedColor==item&& 'border border-black'}`}
+                className={`h-8 w-8 rounded-lg cursor-pointer hover:scale-110 transition-transform border-2
+                ${selectedColor==item ? 'border-white scale-110 shadow-lg' : 'border-white/30'}`}
                 style={{
                     background:item
                 }}

@@ -79,51 +79,70 @@ function Experience() {
 
 
   return (
-    <div className="p-5 shadow-lg rounded-lg border-t-primary border-t-4 mt-10">
-      <h2 className='font-bold text-lg'>Professional Experience</h2>
-      <p>Add your previous Job experience</p>
-      <div>
+    <div className="glass rounded-2xl p-6 md:p-8 shadow-2xl border-t-4 border-purple-400">
+      <div className="flex items-center gap-3 mb-2">
+        <div className="w-10 h-10 gradient-success rounded-xl flex items-center justify-center">
+          <span className="text-white font-bold text-lg">3</span>
+        </div>
+        <h2 className='font-bold text-2xl text-white'>Professional Experience</h2>
+      </div>
+      <p className="text-white/80 mb-6">Add your previous job experience</p>
+      <div className="space-y-6">
         {
             experienceList.map((item,index)=>(
-                 <div  key={index}>
-                    <div className='grid grid-cols-2 gap-3 border p-3 my-5 rounded-lg '>
+                 <div key={index} className="glass-dark rounded-xl p-5 space-y-4">
+                    <div className="flex items-center justify-between mb-3">
+                      <h3 className="text-white font-semibold">Experience #{index + 1}</h3>
+                    </div>
+                    <div className='grid grid-cols-1 md:grid-cols-2 gap-4'>
                         <div>
-                        <label className='text-xs'>Position Title</label>
+                        <label className='text-sm font-semibold text-white mb-2 block'>Position Title</label>
                         <Input name="title" onChange={(event)=>handleChange(index,event)}
                             defaultValue={item?.title}
+                            className="glass border-white/30 text-white placeholder:text-gray-400 focus:border-purple-400"
+                            placeholder="Senior Developer"
                         />
                         </div>
                         <div>
-                        <label className='text-xs'>Company Name</label>
+                        <label className='text-sm font-semibold text-white mb-2 block'>Company Name</label>
                         <Input name="companyName" onChange={(event)=>handleChange(index,event)}
                             defaultValue={item?.companyName}
+                            className="glass border-white/30 text-white placeholder:text-gray-400 focus:border-purple-400"
+                            placeholder="Tech Corp"
                         />
                         </div>
                         <div>
-                        <label className='text-xs'>City</label>
+                        <label className='text-sm font-semibold text-white mb-2 block'>City</label>
                         <Input name="city" onChange={(event)=>handleChange(index,event)}
                             defaultValue={item?.city}
+                            className="glass border-white/30 text-white placeholder:text-gray-400 focus:border-purple-400"
+                            placeholder="San Francisco"
                         />
                         </div>
                         <div>
-                        <label className='text-xs'>State</label>
+                        <label className='text-sm font-semibold text-white mb-2 block'>State</label>
                         <Input name="state" onChange={(event)=>handleChange(index,event)}
                             defaultValue={item?.state}
+                            className="glass border-white/30 text-white placeholder:text-gray-400 focus:border-purple-400"
+                            placeholder="CA"
                         />
                         </div>
                         <div>
-                        <label className='text-xs'>Start Date</label>
+                        <label className='text-sm font-semibold text-white mb-2 block'>Start Date</label>
                         <Input type="date" name="startDate" onChange={(event)=>handleChange(index,event)}
                             defaultValue={item?.startDate}
+                            className="glass border-white/30 text-white placeholder:text-gray-400 focus:border-purple-400"
                         />
                         </div>
                         <div>
-                        <label className='text-xs'>End Date</label>
+                        <label className='text-sm font-semibold text-white mb-2 block'>End Date</label>
                         <Input type="date" name="endDate" onChange={(event)=>handleChange(index,event)}
                             defaultValue={item?.endDate}
+                            className="glass border-white/30 text-white placeholder:text-gray-400 focus:border-purple-400"
                         />
                         </div>
-                        <div className='col-span-2'>
+                        <div className='md:col-span-2'>
+                        <label className='text-sm font-semibold text-white mb-2 block'>Work Summary</label>
                         <RichTextEditor 
                         index={index}
                         onRichTextEditorChange={(event)=>handleRichTextEditor(event,'workSummery',index)}
@@ -134,14 +153,18 @@ function Experience() {
                  </div>))
         }
       </div>
-      <div className='flex justify-between'>
+      <div className='flex flex-col sm:flex-row justify-between gap-3 mt-6'>
         <div className='flex gap-2'>
-            <Button variant='outline' onClick={AddNewExperience}> + Add More Experience</Button>
-            <Button variant='outline' onClick={RemoveExperience}> - Remove</Button>
+            <Button className="glass border-white/30 text-white hover:bg-white/20" onClick={AddNewExperience}> 
+              + Add Experience
+            </Button>
+            <Button className="glass border-white/30 text-white hover:bg-white/20" onClick={RemoveExperience}> 
+              - Remove
+            </Button>
         </div>
         
-        <Button variant='outline' disabled={loading} onClick={()=>onSave()}>
-            {loading ?<LoaderCircle className='animate-spin'/>:'Save'}
+        <Button disabled={loading} onClick={()=>onSave()} className="gradient-primary text-white px-6">
+            {loading ?<LoaderCircle className='animate-spin'/>:'Save & Continue'}
         </Button>
       </div>
     </div>

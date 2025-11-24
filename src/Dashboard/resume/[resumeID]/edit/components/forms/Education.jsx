@@ -73,62 +73,84 @@ function Education() {
         })
     },[educationalList])
   return (
-    <div className="p-5 shadow-lg rounded-lg border-t-primary border-t-4 mt-10">
-      <h2 className='font-bold text-lg'>Education</h2>
-      <p>Add your educational details</p>
+    <div className="glass rounded-2xl p-6 md:p-8 shadow-2xl border-t-4 border-purple-400">
+      <div className="flex items-center gap-3 mb-2">
+        <div className="w-10 h-10 gradient-ocean rounded-xl flex items-center justify-center">
+          <span className="text-white font-bold text-lg">4</span>
+        </div>
+        <h2 className='font-bold text-2xl text-white'>Education</h2>
+      </div>
+      <p className="text-white/80 mb-6">Add your educational details</p>
 
-      <div>
+      <div className="space-y-6">
         {educationalList.map((item,index)=>(
-            <div>
-                <div className='grid grid-item grid-cols-2 gap-3 border p-3 my-5 rounded-lg'>
-                    <div className='col-span-2'>
-                        <label>University Name</label>
+            <div key={index} className="glass-dark rounded-xl p-5 space-y-4">
+                <div className="flex items-center justify-between mb-3">
+                  <h3 className="text-white font-semibold">Education #{index + 1}</h3>
+                </div>
+                <div className='grid grid-cols-1 md:grid-cols-2 gap-4'>
+                    <div className='md:col-span-2'>
+                        <label className='text-sm font-semibold text-white mb-2 block'>University Name</label>
                         <Input name="universityName" onChange={(e)=>handleChange(e,index)}
                             defaultValue={item?.universityName}
+                            className="glass border-white/30 text-white placeholder:text-gray-400 focus:border-purple-400"
+                            placeholder="Stanford University"
                         />
                     </div>
                     <div>
-                        <label>Degree</label>
+                        <label className='text-sm font-semibold text-white mb-2 block'>Degree</label>
                         <Input name="degree" onChange={(e)=>handleChange(e,index)}
                             defaultValue={item?.degree}
+                            className="glass border-white/30 text-white placeholder:text-gray-400 focus:border-purple-400"
+                            placeholder="Bachelor of Science"
                         />
                     </div>
                     <div>
-                        <label>Major</label>
+                        <label className='text-sm font-semibold text-white mb-2 block'>Major</label>
                         <Input name="major" onChange={(e)=>handleChange(e,index)}
                             defaultValue={item?.major}
+                            className="glass border-white/30 text-white placeholder:text-gray-400 focus:border-purple-400"
+                            placeholder="Computer Science"
                         />
                     </div>
                     <div>
-                        <label>Start Date</label>
+                        <label className='text-sm font-semibold text-white mb-2 block'>Start Date</label>
                         <Input type="date" name="startDate" onChange={(e)=>handleChange(e,index)}
                             defaultValue={item?.startDate}
+                            className="glass border-white/30 text-white placeholder:text-gray-400 focus:border-purple-400"
                         />
                     </div>
                     <div>
-                        <label>End Date</label>
+                        <label className='text-sm font-semibold text-white mb-2 block'>End Date</label>
                         <Input type="date" name="endDate" onChange={(e)=>handleChange(e,index)}
                             defaultValue={item?.endDate}
+                            className="glass border-white/30 text-white placeholder:text-gray-400 focus:border-purple-400"
                         />
                     </div>
-                    <div className='col-span-2'>
-                        <label>Description</label>
+                    <div className='md:col-span-2'>
+                        <label className='text-sm font-semibold text-white mb-2 block'>Description</label>
                         <Textarea name="description" onChange={(e)=>handleChange(e,index)}
                             defaultValue={item?.description}
+                            className="glass border-white/30 text-white placeholder:text-gray-400 focus:border-purple-400 min-h-[100px]"
+                            placeholder="Describe your achievements, coursework, or activities..."
                         />
                     </div>
                 </div>
             </div>
         ))}
       </div>
-      <div className='flex justify-between'>
+      <div className='flex flex-col sm:flex-row justify-between gap-3 mt-6'>
         <div className='flex gap-2'>
-            <Button variant='outline' onClick={AddNewEducation}> + Add More Education</Button>
-            <Button variant='outline' onClick={RemoveEducation}> - Remove</Button>
+            <Button className="glass border-white/30 text-white hover:bg-white/20" onClick={AddNewEducation}> 
+              + Add Education
+            </Button>
+            <Button className="glass border-white/30 text-white hover:bg-white/20" onClick={RemoveEducation}> 
+              - Remove
+            </Button>
         </div>
         
-        <Button variant='outline' disabled={loading} onClick={()=>onSave()}>
-            {loading ?<LoaderCircle className='animate-spin'/>:'Save'}
+        <Button disabled={loading} onClick={()=>onSave()} className="gradient-primary text-white px-6">
+            {loading ?<LoaderCircle className='animate-spin'/>:'Save & Continue'}
         </Button>
       </div>
     </div>

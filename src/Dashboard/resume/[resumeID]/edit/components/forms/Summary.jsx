@@ -67,38 +67,55 @@ function Summary({enabledNext}) {
   }
 
   return (
-    <div className="p-5 shadow-lg rounded-lg border-t-primary border-t-4 mt-10">
-        <h2 className='font-bold text-lg'>Summary</h2>
-        <p>Add Summary for your job title</p>
+    <div className="glass rounded-2xl p-6 md:p-8 shadow-2xl border-t-4 border-purple-400">
+        <div className="flex items-center gap-3 mb-2">
+          <div className="w-10 h-10 gradient-secondary rounded-xl flex items-center justify-center">
+            <span className="text-white font-bold text-lg">2</span>
+          </div>
+          <h2 className='font-bold text-2xl text-white'>Summary</h2>
+        </div>
+        <p className="text-white/80 mb-6">Add a compelling summary for your job title</p>
 
-        <form className='mt-7' onSubmit={onSave}>
-          <div className="flex justify-between items-end">
-            <label>
-              Add Summary
+        <form className='space-y-4' onSubmit={onSave}>
+          <div className="flex flex-col sm:flex-row justify-between sm:items-end gap-3">
+            <label className="text-sm font-semibold text-white">
+              Professional Summary
             </label>
-            <Button variant="outline"  type="button" size="sm" className="border-primary text-primary flex gap-2"
+            <Button type="button" size="sm" className="gradient-success text-white flex gap-2 w-fit"
               onClick={()=>GenerateSummeryFromAI()}
+              disabled={loading}
             > 
             <Brain className='h-4 w-4'/>
-            Generate from AI</Button>
+            {loading ? 'Generating...' : 'Generate with AI'}</Button>
           </div>
-          <Textarea className="mt-5" required
+          <Textarea 
+            className="glass border-white/30 text-white placeholder:text-gray-400 focus:border-purple-400 min-h-[120px]" 
+            required
             onChange={(e)=>setSummary(e.target.value)}
+            defaultValue={resumeInfo?.summery}
+            placeholder="Write a brief summary about yourself and your career goals..."
           />
-          <div className='mt-3 flex justify-end'>
-                <Button variant='ghost' type="submit" disabled={loading}>
-                {loading?<LoaderCircle className='animate-spin'/>:'Save'}
+          <div className='flex justify-end'>
+                <Button type="submit" disabled={loading} className="gradient-primary text-white px-6">
+                {loading?<LoaderCircle className='animate-spin'/>:'Save & Continue'}
                 </Button>
         </div>
         </form>
         
         {
-          aiGeneratedSummeryList && <div>
-            <h2 className='font-bold text-lg'>Suggestions</h2>
+          aiGeneratedSummeryList && <div className="mt-6 space-y-4">
+            <h2 className='font-bold text-lg text-white flex items-center gap-2'>
+              <Brain className="w-5 h-5 text-purple-300"/>
+              AI Suggestions
+            </h2>
             { aiGeneratedSummeryList.map((item,index)=>(
-              <div>
-                <h2 className='font-bold my-1'>Level: {item?.experienceLevel}</h2>
-                <p>{item?.summery}</p>
+              <div key={index} className="glass-dark rounded-xl p-4 hover:bg-white/10 transition-colors cursor-pointer"
+                onClick={()=>setSummary(item?.summery)}
+              >
+                <h3 className='font-bold text-purple-300 mb-2 text-sm uppercase'>
+                  {item?.experienceLevel}
+                </h3>
+                <p className="text-white/90 text-sm leading-relaxed">{item?.summery}</p>
               </div>
             ))}
           </div>

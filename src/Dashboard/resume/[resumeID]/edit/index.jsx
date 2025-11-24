@@ -22,9 +22,15 @@ function EditResume() {
     }
   return (
     <ResumeInfoContext.Provider value={{resumeInfo,setResumeInfo}}>
-    <div className="grid grid-cols-1 md:grid-cols-2 p-10 gap-10">
-      <FormSection/>
-      <ResumePreview/>
+    <div className="min-h-screen gradient-cool relative overflow-hidden">
+      {/* Background elements */}
+      <div className="absolute top-20 left-10 w-96 h-96 bg-purple-300 rounded-full mix-blend-multiply filter blur-xl opacity-10 animate-blob"></div>
+      <div className="absolute bottom-20 right-10 w-96 h-96 bg-pink-300 rounded-full mix-blend-multiply filter blur-xl opacity-10 animate-blob animation-delay-2000"></div>
+      
+      <div className="relative z-10 grid grid-cols-1 lg:grid-cols-2 p-6 md:p-10 gap-6 md:gap-10 max-w-[1800px] mx-auto">
+        <FormSection/>
+        <ResumePreview/>
+      </div>
     </div>
     </ResumeInfoContext.Provider>
   )

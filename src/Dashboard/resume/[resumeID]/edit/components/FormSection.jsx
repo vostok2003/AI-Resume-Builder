@@ -15,25 +15,39 @@ function FormSection() {
   const { resumeID } = useParams();
 
   return (
-    <div>
-      <div className='flex justify-between item-center'>
-        <div className="flex gap-5">
+    <div className="space-y-6">
+      {/* Navigation Header */}
+      <div className='glass rounded-2xl p-4 flex justify-between items-center shadow-lg'>
+        <div className="flex gap-3">
           <Link to="/dashboard">
-            <Button variant="ghost"><Home/></Button>
+            <Button className="glass border-white/30 text-white hover:bg-white/20">
+              <Home className="w-4 h-4"/>
+            </Button>
           </Link>
           <ThemeColor/>
         </div>
         
-        <div className='flex gap-2'>
+        <div className='flex gap-2 items-center'>
+          <div className="hidden sm:flex items-center gap-2 text-white/80 text-sm mr-3">
+            <span className="font-semibold text-white">Step {activeFormIndex}</span> of 5
+          </div>
           {activeFormIndex>1 && 
-            <Button variant="ghost" size="sm"
+            <Button className="glass border-white/30 text-white hover:bg-white/20" size="sm"
               onClick={()=>setActiveFormIndex(activeFormIndex-1)}
-            ><ArrowLeft/> </Button>}
-          <Button className="flex gap-2" size="sm" variant="ghost"
+            ><ArrowLeft className="w-4 h-4"/> <span className="hidden sm:inline ml-1">Back</span></Button>}
+          <Button className="gradient-primary text-white flex gap-2" size="sm"
             disabled={!enableNext}
             onClick={()=>setActiveFormIndex(activeFormIndex+1)}
-          > Next <ArrowRight/></Button>
+          > <span className="hidden sm:inline">Next</span> <ArrowRight className="w-4 h-4"/></Button>
         </div>
+      </div>
+
+      {/* Progress Bar */}
+      <div className="glass rounded-full p-1 overflow-hidden">
+        <div 
+          className="h-2 gradient-primary rounded-full transition-all duration-500"
+          style={{width: `${(activeFormIndex / 5) * 100}%`}}
+        ></div>
       </div>
       {/* personal detail */}
         { activeFormIndex==1 ?<PersonalDetail enabledNext={(v)=>setEnableNext(v)}/> :
